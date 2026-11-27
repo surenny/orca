@@ -1,0 +1,105 @@
+{
+  "date": "2026-11-27",
+  "timezone": "Asia/Shanghai",
+  "commit": "00042ca2bbf08fbf81bf1e820ad417faed1254d0",
+  "scope": "CLI transport; macOS coordinator; real Codex exec_command approvals; private two-account test group",
+  "snapshots": [
+    {
+      "card_alias": "A1",
+      "revision": 8,
+      "sent_revision": 8,
+      "inline": true,
+      "pending": true,
+      "separate_prompt_message": null,
+      "native_approval_state": "pending",
+      "selected_option": null,
+      "native_turn_state": "running",
+      "native_turn_outcome": null,
+      "final": null,
+      "note": null
+    },
+    {
+      "card_alias": "A1",
+      "revision": 8,
+      "sent_revision": 8,
+      "inline": true,
+      "pending": true,
+      "separate_prompt_message": null,
+      "native_approval_state": "pending",
+      "selected_option": null,
+      "native_turn_state": "running",
+      "native_turn_outcome": null,
+      "final": null,
+      "note": null
+    },
+    {
+      "card_alias": "A1",
+      "revision": 14,
+      "sent_revision": 14,
+      "inline": true,
+      "pending": false,
+      "separate_prompt_message": null,
+      "native_approval_state": "resolved",
+      "selected_option": "accept",
+      "native_turn_state": "completed",
+      "native_turn_outcome": "success",
+      "final": "命令获准后执行成功，退出码为 `0`，实际输出为 `INLINE-FINAL-ALLOW-1127`。",
+      "note": "已选择：Allow"
+    },
+    {
+      "card_alias": "B1",
+      "revision": 9,
+      "sent_revision": 9,
+      "inline": true,
+      "pending": true,
+      "separate_prompt_message": null,
+      "native_approval_state": "pending",
+      "selected_option": null,
+      "native_turn_state": "running",
+      "native_turn_outcome": null,
+      "final": null,
+      "note": null
+    },
+    {
+      "card_alias": "B1",
+      "revision": 13,
+      "sent_revision": 13,
+      "inline": true,
+      "pending": false,
+      "separate_prompt_message": null,
+      "native_approval_state": "resolved",
+      "selected_option": "cancel",
+      "native_turn_state": "interrupted",
+      "native_turn_outcome": "cancellation",
+      "final": "Stopped on Orca.",
+      "note": "已选择：Stop"
+    }
+  ],
+  "provider_readbacks": [
+    {
+      "card_alias": "A1",
+      "type": "interactive",
+      "updated": true,
+      "deleted": false,
+      "content": "<card title=\"Test Bot · 已完成 · 206.4s\">\n▶ 🛠️ 工具执行 · 1 步 · (206.4s)\n    📝 **执行命令 · 0ms** · 已完成\n    📝 /usr/bin/printf 'INLINE-FINAL-ALLOW-1127\\n'\n▲\n正在通过命令执行工具请求人工授权。\n\n命令获准后执行成功，退出码为 `0`，实际输出为 `INLINE-FINAL-ALLOW-1127`。\nRun a command?\n/bin/zsh -lc \"/usr/bin/printf 'INLINE-FINAL-ALLOW-1127\\\\n'\"\n已选择：Allow\n</card>"
+    },
+    {
+      "card_alias": "B1",
+      "type": "interactive",
+      "updated": true,
+      "deleted": false,
+      "content": "<card title=\"Test Bot · 已完成 · 84.8s\">\n▶ 🛠️ 工具执行 · 1 步 · (84.8s)\n    📝 **执行命令** · 失败\n    📝 /usr/bin/printf 'INLINE-FINAL-STOP-1127\\n'\n▲\n正在通过命令执行工具请求人工授权。\n\nStopped on Orca.\nRun a command?\n/bin/zsh -lc \"/usr/bin/printf 'INLINE-FINAL-STOP-1127\\\\n'\"\n已选择：Stop\n</card>"
+    }
+  ],
+  "assertions": {
+    "allow_original_message_retained": true,
+    "stop_original_message_retained": true,
+    "standalone_prompt_message_created": false,
+    "other_account_click_resolved_approval": false
+  },
+  "qualifications": [
+    "Cross-account UI click observed; pending journal and controls remained unchanged. No explicit rejection toast or per-click server audit was captured.",
+    "Stop cancels the native turn; the terminal header still says completed and the tool row says failed, while the body says Stopped on Orca.",
+    "Elapsed time includes human approval wait; not a performance measurement."
+  ]
+}
