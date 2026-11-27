@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-27",
+  "commit": "a2b9430bcbaac2997595e915c8fa3e94b636f147",
+  "scope": "Fresh real Codex native command approval on the Mac mini CLI-connected test Bot; Stop clicked in the Feishu client",
+  "card_alias": "C1",
+  "same_original_message": true,
+  "native_approval": "cancel",
+  "native_turn_state": "interrupted",
+  "native_outcome": "cancellation",
+  "card_phase": "stopped",
+  "card_revision": 12,
+  "sent_revision": 12,
+  "visible_header": "Test Bot · 已停止 · 82.6s",
+  "visible_header_template": "grey",
+  "provider_content": "<card title=\"Test Bot · 已停止 · 82.6s\">\n▶ 🛠️ 工具执行 · 1 步 · (82.6s)\n    📝 **执行命令** · 失败\n    📝 /usr/bin/printf 'STOP-HEADER-1127\\n'\n▲\n正在通过命令执行工具请求人工授权。\n\nStopped on Orca.\nRun a command?\n/bin/zsh -lc \"/usr/bin/printf 'STOP-HEADER-1127\\\\n'\"\n已选择：Stop\n</card>",
+  "cleanup": "Original Bot permission mode restored; no proxy changes",
+  "additional_check": "Previous real Stop card B1 also recovered to stopped on the same physical message after deploying this build",
+  "qualification": "Tool row retains its native failed state. This fix distinguishes the response header cancellation state. Elapsed time includes manual approval wait."
+}
