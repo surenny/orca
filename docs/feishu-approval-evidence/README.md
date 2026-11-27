@@ -24,7 +24,7 @@ The figure is a **sanitized schematic reconstructed from observed UI and actual 
 
 A1 and B1 are stable pseudonyms for two distinct physical message IDs. The private raw records were compared before identifiers were removed. [Sanitized evidence.json](evidence.json) includes native state samples and final provider-returned content. It is a selected evidence extract, not a full callback audit or complete session dump.
 
-## Remaining presentation caveat
+## Historical presentation caveat (fixed in the follow-up below)
 
 After Stop, the actual card header still says **已完成** (Completed), its tool row says **失败** (Failed), and its body says **Stopped on Orca.** The native cancellation and same-card delivery passed; a distinct cancelled/stopped header has not been implemented or claimed. The schematic and extract deliberately retain this fact.
 
@@ -42,3 +42,9 @@ Elapsed values (206.4 s and 84.8 s in provider headers) include time waiting for
 ## Validation boundary
 
 This acceptance did not change implementation code. The existing checkpoint gate passed 54 selected checks against main `19dd83585e`; it was not rerun just to publish these materials. Broader platform, transport, race and attachment coverage remains as qualified in PR #49809. Earlier model-routing failures occurred before tool invocation; these fresh requests reached and exercised the native approval flow, without a new proxy core or a proxy configuration change.
+
+## Stopped-header follow-up — a2b9430bcb
+
+On 2026-11-27, deployed `a2b9430bcbaac2997595e915c8fa3e94b636f147` to the same isolated Mac mini development profile. A fresh real native `exec_command` approval was requested and **Stop was clicked in the Feishu client**. The original response card became grey and displayed **已停止** (Stopped), with `Stopped on Orca.` and selected Stop in that same card. Native approval resolved to `cancel`; the turn was `interrupted` with outcome `cancellation`, without successful command execution or a retry. Independent Feishu readback confirmed the exact same physical message ID and stopped header. The prior real Stop card also recovered to stopped after deployment. The original Bot permission mode was restored.
+
+[Sanitized current-build evidence](stopped-header.json). The earlier figure and evidence.json are retained as the historical `00042ca2bb` acceptance, not as the current header behavior. The tool row still reflects the native failed tool state; this follow-up changes the response's cancelled header/state. The follow-up changed-file gate passed **28 selected checks** against `00042ca2bb`, including a real SQLite regression covering cancellation persistence and late worker events. This is distinct from the earlier 54-check full-diff checkpoint.
